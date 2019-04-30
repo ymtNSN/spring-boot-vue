@@ -1,4 +1,4 @@
-package com.ymt.main;
+package com.ymt.manage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2019/4/29
  */
 @SpringBootApplication
-public class MainApplication {
+public class ManageApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MainApplication.class,args);
+        SpringApplication.run(ManageApplication.class, args);
     }
 }

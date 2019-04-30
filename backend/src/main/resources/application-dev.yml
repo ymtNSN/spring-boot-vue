@@ -1,2 +1,19 @@
 server:
   port: 8077
+
+#
+######## mysql连接的配置 start########
+#mysql主的读写支持
+spring:
+  datasource:
+    url: jdbc:mysql://rm-uf6q7l04721ze2mbfro.mysql.rds.aliyuncs.com:3306/change_test?useSSL=false&serverTimezone=UTC
+    username: change_dev
+    password: xP6FQ4ajw79W
+    tomcat:
+      max-active: 40
+      max-idle: 20
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa.show-sql: true
+#spring.jpa.properties.hibernate.hbm2ddl.auto=update//该部分禁止开启
+######## mysql连接的配置 end########
+#
