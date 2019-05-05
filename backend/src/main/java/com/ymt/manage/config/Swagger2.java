@@ -20,8 +20,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class Swagger2 {
 
     @Bean
+    public Docket docketApp() {
+        return new Docket(DocumentationType.SWAGGER_2).groupName("app")
+                .apiInfo(apiInfo())
+                .select()
+                // 当前包路径
+                .apis(RequestHandlerSelectors.basePackage("com.ymt.manage.app"))
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    @Bean
     public Docket docket() {
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SWAGGER_2).groupName("web")
                 .apiInfo(apiInfo())
                 .select()
                 // 当前包路径

@@ -1,5 +1,7 @@
-package com.ymt.manage.web.admin;
+package com.ymt.manage.app.admin;
 
+import com.ymt.manage.base.BaseController;
+import com.ymt.manage.base.BaseReq;
 import com.ymt.manage.base.RespEntity;
 import com.ymt.manage.domain.mysql.entity.AdminUrlEntity;
 import com.ymt.manage.domain.mysql.repo.AdminUrlRepo;
@@ -20,15 +22,15 @@ import java.util.List;
 @Api(tags = {"1、admin管理部分"}, description = "admin管理部分接口")
 @RequestMapping("/admin")
 @RestController
-public class AdminController {
+public class AdminController extends BaseController {
 
     @Autowired
     private AdminUrlRepo adminUrlRepo;
 
     @ApiOperation(value = "所有admin_url")
     @RequestMapping(value = "/url", method = RequestMethod.GET)
-    public RespEntity<List<AdminUrlEntity>> findAll() {
-        RespEntity<List<AdminUrlEntity>> respEntity = RespEntity.One();
+    public RespEntity<List<AdminUrlEntity>> findAll(BaseReq req) {
+        RespEntity<List<AdminUrlEntity>> respEntity = RespEntity.One(req);
         respEntity.data = adminUrlRepo.findAll();
         return respEntity;
     }
