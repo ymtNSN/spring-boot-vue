@@ -23,3 +23,9 @@ spring:
 #spring.jpa.properties.hibernate.hbm2ddl.auto=update//该部分禁止开启
 ######## mysql连接的配置 end########
 #
+
+#
+############自定义属性####################
+myproperties:
+  name: ymt
+#
