@@ -1,4 +1,4 @@
-package com.ymt.manage.thread;
+package com.ymt.manage.demo.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
