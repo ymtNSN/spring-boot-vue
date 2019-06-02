@@ -24,6 +24,7 @@ public class ClientSocketDemo {
             String line = sin.readLine();
             while (!line.equals("bye")) {
                 out.println(line);
+                out.flush();
                 System.out.println("Server:" + in.readLine());
                 line = sin.readLine();
             }
