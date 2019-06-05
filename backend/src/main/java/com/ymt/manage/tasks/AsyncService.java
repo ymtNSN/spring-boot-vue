@@ -15,4 +15,9 @@ public class AsyncService {
     public void test() {
         System.out.println(Thread.currentThread().getName() + ": asyn ....");
     }
+
+    public static void main(String[] args) {
+        int i = Runtime.getRuntime().availableProcessors();
+        System.out.println(i);
+    }
 }

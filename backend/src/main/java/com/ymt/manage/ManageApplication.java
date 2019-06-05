@@ -51,7 +51,8 @@ public class ManageApplication {
         taskExecutor.setAllowCoreThreadTimeOut(true);
         taskExecutor.setThreadNamePrefix("AsyncThread-");
         taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        taskExecutor.initialize();
+        // bean会初始化
+//        taskExecutor.initialize();
         return taskExecutor;
     }
 
