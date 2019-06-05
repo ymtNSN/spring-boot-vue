@@ -5,6 +5,7 @@ import com.ymt.manage.base.BaseReq;
 import com.ymt.manage.base.RespEntity;
 import com.ymt.manage.domain.mysql.entity.AdminUrlEntity;
 import com.ymt.manage.domain.mysql.repo.AdminUrlRepo;
+import com.ymt.manage.tasks.AsyncService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class WebAdminController extends BaseController {
 
     @Autowired
     private AdminUrlRepo adminUrlRepo;
+    @Autowired
+    private AsyncService asyncService;
 
     @Value("${myproperties.name}")
     private String name;
@@ -37,6 +40,8 @@ public class WebAdminController extends BaseController {
         RespEntity<List<AdminUrlEntity>> respEntity = RespEntity.One(req);
         respEntity.data = adminUrlRepo.findAll();
         System.out.println(name);
+        asyncService.test();
+        System.out.println(Thread.currentThread().getName() + "finish---");
         return respEntity;
     }
 }
