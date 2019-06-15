@@ -9,9 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.mvc.method.annotation.PathVariableMapMethodArgumentResolver;
 
 import java.awt.image.PixelInterleavedSampleModel;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @Description TODO
@@ -19,6 +22,7 @@ import java.awt.image.PixelInterleavedSampleModel;
  * @Date 2019/4/29
  */
 @SpringBootApplication
+@EnableAsync
 public class ManageApplication {
     public static void main(String[] args) {
         SpringApplication.run(ManageApplication.class, args);
@@ -27,6 +31,29 @@ public class ManageApplication {
 //        application.setBannerMode(Banner.Mode.OFF);
 //        application.run(args);
 
+    }
+
+    /**
+     * 描述:初始化线程池
+     *
+     * @return org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+     * @author yangmingtian
+     * @params []
+     */
+    @Bean("asyncPoolTaskExecutor")
+    public ThreadPoolTaskExecutor getAsyncThreadPoolTaskExecutor() {
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setCorePoolSize(5);
+        taskExecutor.setMaxPoolSize(10);
+        taskExecutor.setQueueCapacity(20);
+        taskExecutor.setKeepAliveSeconds(200);
+        // 允许核心线程销毁
+        taskExecutor.setAllowCoreThreadTimeOut(true);
+        taskExecutor.setThreadNamePrefix("AsyncThread-");
+        taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        // bean会初始化
+//        taskExecutor.initialize();
+        return taskExecutor;
     }
 
     @Bean
