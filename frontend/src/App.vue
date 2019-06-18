@@ -2,7 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <!--<router-view/>-->
-    <!--<hello-world></hello-world>-->
+    <hello-world></hello-world>
     <span v-bind:title="message">
       ymtsss {{message}}
     </span>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://unpkg.com/vue"></script>
+
+</head>
+<body>
+<div id="app2">
+  <dialog-tem v-bind:show.sync="show">
+    <header class="dialog-header" slot="header">
+      <h1 class="dialog-title">提示信息</h1>
+    </header>
+    <div class="dialog-body" slot="body">
+      <p>你想在对话框中放什么内容都可以！</p>
+      <p>你可以放一段文字，也可以放一些表单，或者是一些图片。</p>
+    </div>
+    <footer class="dialog-footer" slot="footer">
+      <button class="btn" @click="closeDialog">关闭</button>
+    </footer>
+  </dialog-tem>
+  <button class="btn btn-open" @click="openDialog">打开对话框</button>
+</div>
+
+<template id="dialogTem">
+  <div class="dialogs">
+    <div class="dialog" v-bind:class="{'dialog':show}">
+      <div class="dialog-content">
+        <div class="close rotate">
+          <span class="iconfont icon-close" @click="close"></span>
+        </div>
+        <slot name="header"></slot>
+        <slot name="body"></slot>
+        <slot name="footer"></slot>
+      </div>
+    </div>
+    <div class="dialog-overlay"></div>
+  </div>
+</template>
+</body>
+<script>
+  Vue.component('dialog-tem', {
+    template: '#dialogTem',
+    props: ['show'],
+    methods: {
+      close: function () {
+        console.log(this.show)
+        this.show = false
+      }
+    }
+  });
+
+  new Vue({
+    el: '#app2',
+    data: {
+      show: false,
+      // dialogClass: 'dialog-info'
+    },
+    methods: {
+      openDialog: function () {
+        this.show = true;
+        console.log(this.show)
+
+        // this.dialogClass = dialogClass;
+      },
+      closeDialog: function () {
+        this.show = false
+        console.log(this.show)
+
+      }
+    }
+  })
+</script>
+</html>

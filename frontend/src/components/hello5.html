@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../../static/js/vue-2.6.10.min.js"></script>
+</head>
+<body>
+<div id="ymt7">
+  <div>d</div>
+  <my-component7 v-show="display"></my-component7>
+</div>
+<template id="myComponent7">
+  <div>
+    <h2 v-show="display">{{msg}}</h2>
+    <button v-on:click="showMsg">Show Message</button>
+  </div>
+</template>
+
+</body>
+<script>
+
+  new Vue({
+    el: '#ymt7',
+    data: {
+      display: true
+    },
+    components: {
+      'my-component7': {
+        template: '#myComponent7',
+        data: function () {
+          return {
+            msg: 'this is a mmd',
+            display: true
+          }
+        },
+        methods: {
+          showMsg: function () {
+            alert(this.msg)
+          }
+        }
+      }
+    },
+  })
+</script>
+</html>

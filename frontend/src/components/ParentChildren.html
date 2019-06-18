@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://unpkg.com/vue"></script>
+
+</head>
+<body>
+<div id="app5">
+  <parent-component></parent-component>
+</div>
+<template id="parentComponent">
+  <child-component1 ></child-component1>
+  <child-component2></child-component2>
+  <button v-on:click="showChildComponentData">显示子组件的数据</button>
+</template>
+<template id="childComponent1">
+  <h2>This is child component 1</h2>
+</template>
+<template id="childComponent2">
+  <h2>This is child component 2</h2>
+</template>
+</body>
+<script>
+  Vue.component('parent-component', {
+    template: '#parentComponent',
+    components: {
+      'child-component1': {
+        template: '#childComponent1',
+        data: function () {
+          return {
+            msg: 'child component 111'
+          }
+        }
+      },
+      'child-component2': {
+        template: '#childComponent2',
+        data: function () {
+          return {
+            msg: 'child component 222'
+          }
+        }
+      }
+    },
+    methods: {
+      showChildComponentData: function () {
+        console.log("--")
+        for (var i = 0; i < this.$children.length; i++) {
+          this.$ref.
+          alert(this.$children[i].msg)
+        }
+      }
+    }
+  })
+
+  new Vue({
+    el: '#app5'
+  })
+</script>
+</html>

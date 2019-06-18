@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--<script src="../../static/js/vue-2.6.10.min.js"></script>-->
+  <script src="https://unpkg.com/vue"></script>
+
+</head>
+<body>
+<div id="appEvent">
+  <p>Messages:{{messages}}</p>
+  <child-comp></child-comp>
+</div>
+<template id="childComp">
+  <div>
+    <input v-model="msg"/>
+    <button v-on:click="notify">Dispatch Event</button>
+  </div>
+</template>
+</body>
+
+<script>
+  Vue.component('child-comp', {
+    template: '#childComp',
+    data: function () {
+      return {
+        msg: ''
+      }
+    },
+    methods: {
+      notify: function () {
+        if (this.msg.trim()) {
+          this.$dispatch('child-msg', this.msg);
+          this.msg = ''
+        }
+      }
+    }
+  });
+
+  new Vue({
+    el: '#appEvent',
+    data: {
+      messages: ["e"]
+    },
+    events: {
+      'child-msg': function (msg) {
+        this.messages.push(msg)
+      }
+    }
+  })
+</script>
+</html>

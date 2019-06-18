@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-
+<div id="ymt">
+  <my-component></my-component>
+</div>
+<div id="ymt2">
+  <my-component></my-component>
+</div>
+<my-component></my-component>
 </body>
+<script>
+  //1.创建一个组件构造器
+  var myComponent = Vue.extend({
+    template: '<div>This is my first component</div>'
+  })
+  //2.注册组件，并指定组件的标签，组件的HTML标签为
+  Vue.component('my-component', myComponent); // 全局注册（所有Vue实例下可使用）
+
+  new Vue({
+    // 3.#ymt 是Vue实例挂载的元素，应该在挂载元素范围内使用组件
+    el: '#ymt',
+    // components: {
+    //   'my-component': myComponent //局部注册（只在当前Vue实例课使用）
+    // }
+  })
+  new Vue({
+    el: "#ymt2",
+  })
+</script>
 </html>

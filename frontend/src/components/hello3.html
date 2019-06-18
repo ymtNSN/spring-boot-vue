@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="ymt2">
+  <my-component1></my-component1>
+</div>
+<div id="ymt3">
+  <my-component2></my-component2>
+  <my-component3></my-component3>
+</div>
+
+<template id="myComponent5">
+<div>this is 5</div>
+</template>
+
+<script type="text/x-template" id="myComponent4">
+  <div>This is a ymt</div>
+</script>
+</body>
+<script>
+  Vue.component('my-component4', {
+    template: '#myComponent4'
+  });
+  Vue.component('my-component5', {
+    template: '#myComponent5'
+  });
+
+  // 语法糖
+  Vue.component('my-component1', {
+    template: '<div>This is my first component1</div>'
+  });
+  new Vue({
+    el: '#ymt2',
+  })
+  new Vue({
+    el: '#ymt3',
+    components: {
+      'my-component2': {
+        template: '<div>This is my first component2</div>'
+      },
+      'my-component3': {
+        template: '<div>This is my first component3</div>'
+      },
+    }
+  })
+</script>
+</html>
