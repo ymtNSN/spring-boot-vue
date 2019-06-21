@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../../static/js/vue-2.6.10.min.js"></script>
+
+</head>
+<body>
+<div id="store1">
+  <div>{{sharedState.count}}</div>
+  <!--<button v-on:click="change">change</button>-->
+</div>
+<div id="store2">
+  <div>{{sharedState.count}}</div>
+  <!--<button v-on:click="clear">clear</button>-->
+</div>
+</body>
+<script>
+  const store = new Vuex.Store({
+    state: {
+      count: 0
+    },
+    mutations: {
+      increment(state) {
+        state.count++
+      }
+    }
+  });
+
+  new Vue({
+    el: "#store1",
+    data: {
+      sharedState: store.state.count
+    },
+    methods: {
+      change() {
+        store.setMessageAction('store1');
+      }
+    }
+  });
+  new Vue({
+    el: "#store2",
+    data: {
+      sharedState: store.state
+    },
+    methods: {
+      clear() {
+        store.clearMessageAction();
+      }
+    }
+  })
+
+</script>
+</html>
